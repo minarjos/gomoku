@@ -2,18 +2,21 @@
 #include "printer.cpp"
 #include "human.cpp"
 #include "ai.cpp"
+#include "game.cpp"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-int N, to_move, move_time;
+int N, to_move, move_time, firstai, secondhuman;
 
 int main(int argc, char const *argv[]) {
 
   N = atoi(argv[1]);
   to_move = atoi(argv[2]);
   move_time = atoi(argv[3]);
+  firstai = atoi(argv[4]);
+  secondhuman = atoi(argv[5]);
   position p(N, to_move);
   init();
   hilight = {(N+1)/2, (N+1)/2};
@@ -22,26 +25,23 @@ int main(int argc, char const *argv[]) {
   Ai a = *(new Ai(N, move_time));
 
   Player *p1, *p2;
-  p1 = &a;
+  p1 = &h;
+  if(firstai)
+    p1 = &a;
   p2 = &a;
+  if(secondhuman)
+    p2 = &h;
 
   if(to_move == 2)
     swap(p1, p2);
 
-  char c;
+  int result = game(p, p1, p2);
 
-  while(1)
+  if(result)
   {
-    my_move move = p1->play(p);
-    if(move.x == 0 && move.y == 0)
-      break;
-    p.play_move(move);
-    print(p);
-    move = p2->play(p);
-    p.play_move(move);
-    print(p);
+    printw("Player %d won!", (result + to_move)%2+1);
+    getch();
   }
-
 
   endwin();
   return 0;

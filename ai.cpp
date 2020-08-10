@@ -143,8 +143,8 @@ const int fours = 10000;
 const int threes = 1000;
 //                           -  oh o  d   tb  dh  d   th  t   f   fh  ff  five    o  tb
 const int xcombo_scores[] = {0, 4, 8, 40, 40, 15, 30, 25, 50, 50, 25, 100, 100000, 0, 40};
-const int ocombo_scores[] = {0, 4, 8, 40, 40, 15, 30, 25, 50, 50, 25, 100, 100000, 0, 40};
-// {0, 4, 8, 30, 30, 10, 18, 15, 30, 40, 20, 80, 100000, 0, 30};
+// const int ocombo_scores[] = {0, 4, 8, 40, 40, 15, 30, 25, 50, 50, 25, 100, 100000, 0, 40};
+const int ocombo_scores[] = {0, 4, 8, 30, 30, 10, 18, 15, 30, 40, 20, 80, 100000, 0, 30};
 
 int Ai::hash_evaluation(position &p)
 {
@@ -531,6 +531,7 @@ eval_move Ai::only_threes_timed(position &p, int t)
   return best_move;
 }
 
+#include<fstream>
 
 my_move Ai::play(position &p)
 {

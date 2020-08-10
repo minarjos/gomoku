@@ -2,8 +2,10 @@
 #define AI_H
 
 #include "position.h"
+#include "player.h"
 #include <algorithm>
 #include <unordered_map>
+#include <time.h>
 
 const int combos_size = 6;
 const int hash_size = 1<<(2*combos_size)+1;
@@ -29,9 +31,10 @@ struct eval_move
   int e;
 };
 
-class Ai
+class Ai:public Player
 {
 private:
+  int move_time;
   std::unordered_map<long long, int> hash_map;
   std::unordered_map<long long, eval_move> hash_map_smarter[1000];
   std::unordered_map<long long, eval_move> hash_map_fours[1000];
@@ -47,8 +50,10 @@ public:
   int N;
   eval_move blindspot(position &p);
   int hash_evaluation(position &p);
-  Ai(int n, string file="combos")
+  Ai(int n, int t, string file="combos")
   {
+    std::srand(time(NULL));
+    move_time = t;
     N = n;
     parse_combos(file);
   }
@@ -60,7 +65,7 @@ public:
   eval_move hashed_timed(position &p, int t, int s);
   eval_move only_fours_timed(position &p, int t);
   eval_move only_threes_timed(position &p, int t);
-  eval_move play(position &p, int t);
+  my_move play(position &p);
 };
 
 #endif
