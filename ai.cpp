@@ -531,7 +531,12 @@ eval_move Ai::only_threes_timed(position &p, int t)
   return best_move;
 }
 
-#include<fstream>
+bool Ai::have_to_defend(position &p)
+{
+  combos c = get_combos(p);
+  return c.xcombos[11]+c.xcombos[9]+c.xcombos[10]+c.xcombos[8]+c.xcombos[7];
+}
+
 
 my_move Ai::play(position &p)
 {
@@ -546,12 +551,20 @@ my_move Ai::play(position &p)
   eval_move problems = only_fours_timed(p, move_time/10);
   p.undo();
   if((p.to_move == 1 ? problems.e < -1000 : problems.e > 1000) && (problems.m.x || problems.m.y))
+  {
+    if(have_to_defend(p))
+      return hashed(p, 1, 12).m;
     return problems.m;
+  }
   p.play_move(first.m);
   problems = only_threes_timed(p, move_time/10);
   p.undo();
   if((p.to_move == 1 ? problems.e < -1000 : problems.e > 1000) && (problems.m.x || problems.m.y))
+  {
+    if(have_to_defend(p))
+      return hashed(p, 1, 12).m;
     return problems.m;
+  }
   if(p.to_move == 1 ? first.e < -1000 : first.e > 1000)
     return hashed(p, 1, 12).m;
   return first.m;

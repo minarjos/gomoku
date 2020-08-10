@@ -46,6 +46,7 @@ private:
   int sum_centers(position &p);
   bool has_fours(combos &c, combos &old);
   bool has_threes(combos &c, combos &old);
+  bool have_to_defend(position &p);
 public:
   int N;
   eval_move blindspot(position &p);
