@@ -85,4 +85,5 @@ void print(const position &p)
     print_row(p, i);
   }
   print_numbers(p);
+  refresh();
 }

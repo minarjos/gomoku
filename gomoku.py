@@ -22,5 +22,7 @@ to_move = 1
 if arguments.ostarts:
     to_move = 2
 
+print(arguments.time)
+
 os.system("./main " + str(arguments.boardsize) + " " + str(to_move)
            + " " + str(arguments.time))

@@ -5,7 +5,6 @@ my_move Human::play(position &p)
   while(1)
   {
     print(p);
-
     int action = getch();
 
     if(action == KEY_LEFT && hilight.y > 1)

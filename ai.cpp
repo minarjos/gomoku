@@ -532,26 +532,26 @@ eval_move Ai::only_threes_timed(position &p, int t)
 }
 
 
-eval_move Ai::play(position &p, int t)
+my_move Ai::play(position &p)
 {
-  eval_move first = hashed_timed(p, 4*t/10, 12);
-  eval_move second = only_fours_timed(p, 2*t/10);
-  eval_move third = only_threes_timed(p, 2*t/10);
+  eval_move first = hashed_timed(p, 4*move_time/10, 12);
+  eval_move second = only_fours_timed(p, 2*move_time/10);
+  eval_move third = only_threes_timed(p, 2*move_time/10);
   if((p.to_move == 1 ? second.e > 1000 : second.e < -1000) && (second.m.x || second.m.y) && !(p.to_move == 1 ? first.e > 1000 : first.e < -1000))
-    return second;
+    return second.m;
   if((p.to_move == 1 ? third.e > 1000 : third.e < -1000) && (third.m.x || third.m.y) && !(p.to_move == 1 ? first.e > 1000 : first.e < -1000))
-    return third;
+    return third.m;
   p.play_move(first.m);
-  eval_move problems = only_fours_timed(p, t/10);
+  eval_move problems = only_fours_timed(p, move_time/10);
   p.undo();
   if((p.to_move == 1 ? problems.e < -1000 : problems.e > 1000) && (problems.m.x || problems.m.y))
-    return problems;
+    return problems.m;
   p.play_move(first.m);
-  problems = only_threes_timed(p, t/10);
+  problems = only_threes_timed(p, move_time/10);
   p.undo();
   if((p.to_move == 1 ? problems.e < -1000 : problems.e > 1000) && (problems.m.x || problems.m.y))
-    return problems;
+    return problems.m;
   if(p.to_move == 1 ? first.e < -1000 : first.e > 1000)
-    return hashed(p, 1, 12);
-  return first;
+    return hashed(p, 1, 12).m;
+  return first.m;
 }
