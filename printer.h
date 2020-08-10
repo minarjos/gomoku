@@ -6,7 +6,7 @@
 
 const char symbol[] = {' ', 'X', 'O', '-'};
 
-my_move hilight = {8, 8};
+my_move hilight = {1, 1};
 
 void init();
 void print_row(const position &p, int row);

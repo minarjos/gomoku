@@ -10,13 +10,15 @@ my_move Human::play(position &p)
 
     if(action == KEY_LEFT && hilight.y > 1)
       hilight.y--;
-    if(action == KEY_RIGHT && hilight.y < N)
+    else if(action == KEY_RIGHT && hilight.y < p.N)
       hilight.y++;
-    if(action == KEY_UP && hilight.x > 1)
+    else if(action == KEY_UP && hilight.x > 1)
       hilight.x--;
-    if(action == KEY_DOWN && hilight.x < N)
+    else if(action == KEY_DOWN && hilight.x < p.N)
       hilight.x++;
-    if(action == 10 && p.empty(hilight))
+    else if(action == 10 && p.empty(hilight))
       return hilight;
+    else if(action == 27)
+      return {0, 0};
   }
 }

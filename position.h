@@ -3,7 +3,6 @@
 
 #include<vector>
 
-const int N = 15;
 
 struct my_move
 {
@@ -12,12 +11,13 @@ struct my_move
 
 struct position
 {
+  int N;
   int to_move = 1;
-  char board[N+2][N+2];
+  char board[50][50];
   std::vector<my_move> moves;
   void play_move(my_move m);
   bool empty(my_move m);
-  position();
+  position(int n, int to_mov);
   long long get_hash();
 };
 

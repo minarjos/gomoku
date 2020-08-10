@@ -16,7 +16,7 @@ void init()
 void print_row(const position &p, int row)
 {
   printw("    +");
-  for(int i = 0; i < N; i++)
+  for(int i = 0; i < p.N; i++)
   {
     if((hilight.x == row || hilight.x == row+1) && hilight.y == i+1)
     {
@@ -34,7 +34,7 @@ void print_row(const position &p, int row)
 void print_numbers(const position &p)
 {
   printw("    ");
-  for(int i = 1; i <= N; i++)
+  for(int i = 1; i <= p.N; i++)
     printw("%3d ", i);
   printw("\n");
 }
@@ -56,12 +56,12 @@ void print(const position &p)
   clear();
   print_numbers(p);
   print_row(p, 0);
-  for(int i = 1; i <= N; i++)
+  for(int i = 1; i <= p.N; i++)
   {
     printw("%3d ", i);
     printsep(i, 0);
     printw(" ");
-    for(int j = 1; j <= N; j++)
+    for(int j = 1; j <= p.N; j++)
     {
       if(!p.moves.empty() && i == p.moves.back().x && j == p.moves.back().y)
       {
@@ -77,7 +77,7 @@ void print(const position &p)
       }
       printw(" ");
       printsep(i, j);
-      if(j < N)
+      if(j < p.N)
         printw(" ");
     }
     printw("%3d ", i);

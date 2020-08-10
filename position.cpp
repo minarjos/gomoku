@@ -14,9 +14,10 @@ bool position::empty(my_move m)
   return !board[m.x][m.y];
 }
 
-position::position()
+position::position(int n, int to_mov)
 {
-  to_move = 1;
+  N = n;
+  to_move = to_mov;
   for(int i = 0; i <= N; i++)
     for(int j = 0; j <= N; j++)
       board[i][j] = 0;
