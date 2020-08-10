@@ -14,6 +14,14 @@ bool position::empty(my_move m)
   return !board[m.x][m.y];
 }
 
+void position::undo()
+{
+  my_move m = moves.back();
+  board[m.x][m.y] = 0;
+  moves.pop_back();
+  to_move = (1+to_move%2);
+}
+
 position::position(int n, int to_mov)
 {
   N = n;

@@ -11,7 +11,7 @@ parser.add_argument('-n', '--boardsize', type=int, required=False,
 
 parser.add_argument('-t', '--time', type=int, required=False,
                     help='Time for AI per move in miliseconds. Default value is 1000.',
-                    default=15)
+                    default=1000)
 
 parser.add_argument('-o', '--ostarts', required=False,
                     help='The player with O symbol starts',
