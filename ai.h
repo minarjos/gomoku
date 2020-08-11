@@ -3,6 +3,7 @@
 
 #include "position.h"
 #include "player.h"
+#include "constants.cpp"
 #include <algorithm>
 #include <unordered_map>
 #include <time.h>

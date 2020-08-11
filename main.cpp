@@ -8,15 +8,15 @@
 
 using namespace std;
 
-int N, to_move, move_time, firstai, secondhuman;
+int N, to_move, move_time, secondai, firsthuman;
 
 int main(int argc, char const *argv[]) {
 
   N = atoi(argv[1]);
   to_move = atoi(argv[2]);
   move_time = atoi(argv[3]);
-  firstai = atoi(argv[4]);
-  secondhuman = atoi(argv[5]);
+  secondai = atoi(argv[4]);
+  firsthuman = atoi(argv[5]);
   position p(N, to_move);
   init();
   hilight = {(N+1)/2, (N+1)/2};
@@ -25,12 +25,12 @@ int main(int argc, char const *argv[]) {
   Ai a = *(new Ai(N, move_time));
 
   Player *p1, *p2;
-  p1 = &h;
-  if(firstai)
-    p1 = &a;
-  p2 = &a;
-  if(secondhuman)
-    p2 = &h;
+  p1 = &a;
+  if(firsthuman)
+    p1 = &h;
+  p2 = &h;
+  if(secondai)
+    p2 = &a;
 
   if(to_move == 2)
     swap(p1, p2);

@@ -17,12 +17,12 @@ parser.add_argument('-o', '--ostarts', required=False,
                     help='The player with O symbol starts.',
                     action='store_true')
 
-parser.add_argument('-p', '--secondhuman', required=False,
-                    help='Second player is human.',
+parser.add_argument('-p', '--firsthuman', required=False,
+                    help='First player is human.',
                     action='store_true')
 
-parser.add_argument('-a', '--firstai', required=False,
-                    help='First player is ai.',
+parser.add_argument('-a', '--secondai', required=False,
+                    help='Second player is ai.',
                     action='store_true')
 
 arguments = parser.parse_args(sys.argv[1:])
@@ -32,5 +32,5 @@ if arguments.ostarts:
     to_move = 2
 
 os.system("./main " + str(arguments.boardsize) + " " + str(to_move)
-           + " " + str(arguments.time) + " " + str(int(arguments.firstai))
-           + " " + str(int(arguments.secondhuman)))
+           + " " + str(arguments.time) + " " + str(int(arguments.secondai))
+           + " " + str(int(arguments.firsthuman)))

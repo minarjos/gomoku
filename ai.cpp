@@ -139,13 +139,6 @@ int Ai::sum_centers(position &p)
   return sum;
 }
 
-const int fours = 10000;
-const int threes = 1000;
-//                           -  oh o  d   tb  dh  d   th  t   f   fh  ff  five    o  tb
-const int xcombo_scores[] = {0, 4, 8, 40, 40, 15, 30, 25, 50, 50, 25, 100, 100000, 0, 40};
-// const int ocombo_scores[] = {0, 4, 8, 40, 40, 15, 30, 25, 50, 50, 25, 100, 100000, 0, 40};
-const int ocombo_scores[] = {0, 4, 8, 30, 30, 10, 18, 15, 30, 40, 20, 80, 100000, 0, 30};
-
 int Ai::hash_evaluation(position &p)
 {
   long long hsh = p.get_hash();
@@ -158,7 +151,7 @@ int Ai::hash_evaluation(position &p)
     swap(c.xcombos, c.ocombos);
     score = -score;
   }
-  score += rand()%(abs(score/10)+1)*(rand()%3-1);
+  score += rand()%(abs(score/6)+1)*(rand()%3-1);
   for(int i = 0; i < combo_types; i++)
     score += c.xcombos[i]*xcombo_scores[i];
   for(int i = 0; i < combo_types; i++)
@@ -546,7 +539,7 @@ my_move Ai::play(position &p)
   if((p.to_move == 1 ? second.e > 1000 : second.e < -1000) && (second.m.x || second.m.y) && !(p.to_move == 1 ? first.e > 1000 : first.e < -1000))
     return second.m;
   if((p.to_move == 1 ? third.e > 1000 : third.e < -1000) && (third.m.x || third.m.y) && !(p.to_move == 1 ? first.e > 1000 : first.e < -1000))
-    return third.m;
+    first = third;
   p.play_move(first.m);
   eval_move problems = only_fours_timed(p, move_time/10);
   p.undo();
