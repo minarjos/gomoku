@@ -4,12 +4,10 @@
 #include "position.h"
 #include "player.h"
 
-class Human:public Player
+class Human : public Player
 {
 public:
   my_move play(position &p);
 };
-
-
 
 #endif

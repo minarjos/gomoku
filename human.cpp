@@ -2,22 +2,22 @@
 
 my_move Human::play(position &p)
 {
-  while(1)
+  while (1)
   {
     print(p);
     int action = getch();
 
-    if(action == KEY_LEFT && hilight.y > 1)
+    if (action == KEY_LEFT && hilight.y > 1)
       hilight.y--;
-    else if(action == KEY_RIGHT && hilight.y < p.N)
+    else if (action == KEY_RIGHT && hilight.y < p.N)
       hilight.y++;
-    else if(action == KEY_UP && hilight.x > 1)
+    else if (action == KEY_UP && hilight.x > 1)
       hilight.x--;
-    else if(action == KEY_DOWN && hilight.x < p.N)
+    else if (action == KEY_DOWN && hilight.x < p.N)
       hilight.x++;
-    else if(action == 10 && p.empty(hilight))
+    else if (action == 10 && p.empty(hilight))
       return hilight;
-    else if(action == 27)
+    else if (action == 27)
       return {0, 0};
   }
 }

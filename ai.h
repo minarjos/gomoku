@@ -9,7 +9,7 @@
 #include <time.h>
 
 const int combos_size = 6;
-const int hash_size = 1<<(2*combos_size)+1;
+const int hash_size = 1 << (2 * combos_size) + 1;
 const int combo_types = 15;
 
 struct combos
@@ -18,13 +18,12 @@ struct combos
 
   void add_combo(int x)
   {
-    if(x > 0)
+    if (x > 0)
       xcombos[x]++;
     else
       ocombos[-x]++;
   }
 };
-
 
 struct eval_move
 {
@@ -32,7 +31,7 @@ struct eval_move
   int e;
 };
 
-class Ai:public Player
+class Ai : public Player
 {
 private:
   int move_time;
@@ -48,11 +47,12 @@ private:
   bool has_fours(combos &c, combos &old);
   bool has_threes(combos &c, combos &old);
   bool have_to_defend(position &p);
+
 public:
   int N;
   eval_move blindspot(position &p);
   int hash_evaluation(position &p);
-  Ai(int n, int t, string file="combos")
+  Ai(int n, int t, string file = "combos")
   {
     std::srand(time(NULL));
     move_time = t;

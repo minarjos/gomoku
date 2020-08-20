@@ -10,7 +10,8 @@ using namespace std;
 
 int N, to_move, move_time, secondai, firsthuman;
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[])
+{
 
   N = atoi(argv[1]);
   to_move = atoi(argv[2]);
@@ -19,27 +20,27 @@ int main(int argc, char const *argv[]) {
   firsthuman = atoi(argv[5]);
   position p(N, to_move);
   init();
-  hilight = {(N+1)/2, (N+1)/2};
+  hilight = {(N + 1) / 2, (N + 1) / 2};
 
   Human h = *(new Human());
   Ai a = *(new Ai(N, move_time));
 
   Player *p1, *p2;
   p1 = &a;
-  if(firsthuman)
+  if (firsthuman)
     p1 = &h;
   p2 = &h;
-  if(secondai)
+  if (secondai)
     p2 = &a;
 
-  if(to_move == 2)
+  if (to_move == 2)
     swap(p1, p2);
 
   int result = game(p, p1, p2);
 
-  if(result)
+  if (result)
   {
-    printw("Player %d won!", (result + to_move)%2+1);
+    printw("Player %d won!", (result + to_move) % 2 + 1);
     getch();
   }
 

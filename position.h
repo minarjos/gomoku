@@ -1,8 +1,7 @@
 #ifndef POSITION_H
 #define POSITION_H
 
-#include<vector>
-
+#include <vector>
 
 struct my_move
 {
@@ -21,6 +20,5 @@ struct position
   position(int n, int to_mov);
   long long get_hash();
 };
-
 
 #endif

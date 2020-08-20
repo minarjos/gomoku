@@ -14,5 +14,4 @@ void print_numbers(const position &p);
 void printsep(int i, int j);
 void print(const position &p);
 
-
 #endif
