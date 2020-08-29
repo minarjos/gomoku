@@ -9,21 +9,32 @@ void init()
   start_color();
   init_color(COLOR_RED, 1000, 0, 0);
   init_color(COLOR_BLUE, 0, 0, 1000);
-  init_color(COLOR_MAGENTA, 1000, 700, 0);
+  init_color(COLOR_MAGENTA, 0, 0, 0);
   init_color(COLOR_WHITE, 1000, 1000, 1000);
-  init_color(COLOR_BLACK, 0, 0, 0);
+  init_color(COLOR_BLACK, 600, 600, 600);
+  init_color(COLOR_GREEN, 600, 600, 600);
   init_pair(0, COLOR_BLACK, COLOR_WHITE);
   init_pair(1, COLOR_RED, COLOR_WHITE);
   init_pair(2, COLOR_BLUE, COLOR_WHITE);
   init_pair(3, COLOR_MAGENTA, COLOR_WHITE);
   init_pair(4, COLOR_BLACK, COLOR_WHITE);
+  init_pair(5, COLOR_GREEN, COLOR_WHITE);
 }
 
 void print_row(const position &p, int row)
 {
-  attron(COLOR_PAIR(4));
-  printw("    +");
-  attroff(COLOR_PAIR(4));
+  if ((hilight.x == row || hilight.x == row + 1) && (hilight.y == 1))
+  {
+    attron(COLOR_PAIR(3));
+    printw("    +");
+    attroff(COLOR_PAIR(3));
+  }
+  else
+  {
+    attron(COLOR_PAIR(4));
+    printw("    +");
+    attroff(COLOR_PAIR(4));
+  }
   for (int i = 0; i < p.N; i++)
   {
     if ((hilight.x == row || hilight.x == row + 1) && hilight.y == i + 1)
@@ -34,13 +45,22 @@ void print_row(const position &p, int row)
     }
     else
     {
-      attron(COLOR_PAIR(4));
+      attron(COLOR_PAIR(5));
       printw(" - ");
+      attroff(COLOR_PAIR(5));
+    }
+    if ((hilight.x == row || hilight.x == row + 1) && (hilight.y == i + 1 || hilight.y == i+2))
+    {
+      attron(COLOR_PAIR(3));
+      printw("+");
+      attroff(COLOR_PAIR(3));
+    }
+    else
+    {
+      attron(COLOR_PAIR(4));
+      printw("+");
       attroff(COLOR_PAIR(4));
     }
-    attron(COLOR_PAIR(4));
-    printw("+");
-    attroff(COLOR_PAIR(4));
   }
   attron(COLOR_PAIR(4));
   printw("    \n");
@@ -59,7 +79,7 @@ void print_numbers(const position &p)
 
 void printsep(int i, int j)
 {
-  attron(COLOR_PAIR(4));
+  attron(COLOR_PAIR(5));
   if (hilight.x == i && (hilight.y == j || hilight.y == j + 1))
   {
     attron(COLOR_PAIR(3));
@@ -68,7 +88,7 @@ void printsep(int i, int j)
   }
   else
     printw("|");
-  attroff(COLOR_PAIR(4));
+  attroff(COLOR_PAIR(5));
 }
 
 void print(const position &p)
