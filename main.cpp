@@ -22,8 +22,8 @@ int main(int argc, char const *argv[])
   init();
   hilight = {(N + 1) / 2, (N + 1) / 2};
 
-  Human h = *(new Human());
-  Ai a = *(new Ai(N, move_time));
+  Human h = Human();
+  Ai a = Ai(N, move_time);
 
   Player *p1, *p2;
   p1 = &a;
